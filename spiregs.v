@@ -44,7 +44,7 @@ module spi_slave_regs (
     output reg         fault_clear_pulse
 );
 
-    // ---- synchronize SPI pins into system clock domain ----
+    // synchronize SPI pins into system clock domain 
     reg [2:0] sclk_sync, cs_sync;
     reg       mosi_sync;
     always @(posedge clk or negedge rst_n) begin
