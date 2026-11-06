@@ -43,7 +43,7 @@ module battery_motor_manager #(
     output wire          spi_miso
 );
 
-    // ---- battery protection ----
+    // battery protection 
     wire undervoltage, overvoltage, overcurrent, fault;
     wire fault_clear_pulse;
 
@@ -63,7 +63,7 @@ module battery_motor_manager #(
         .fault        (fault)
     );
 
-    // ---- tachometer / RPM measurement ----
+    // tachometer / RPM measurement
     wire [15:0] measured_rpm;
     wire        rpm_valid;
 
@@ -79,7 +79,7 @@ module battery_motor_manager #(
         .rpm_valid  (rpm_valid)
     );
 
-    // ---- SPI register interface to MCU ----
+    // SPI register interface to MCU
     wire [15:0] target_rpm;
 
     spi_slave_regs u_spi (
@@ -98,7 +98,7 @@ module battery_motor_manager #(
         .fault_clear_pulse (fault_clear_pulse)
     );
 
-    // ---- closed-loop speed control ----
+    // closed-loop speed control
     wire [9:0] duty_cycle;
 
     speed_controller #(
@@ -114,7 +114,7 @@ module battery_motor_manager #(
         .duty_cycle   (duty_cycle)
     );
 
-    // ---- PWM output to motor driver ----
+    // PWM output to motor driver 
     pwm_generator #(
         .COUNTER_WIDTH (10)
     ) u_pwm (
