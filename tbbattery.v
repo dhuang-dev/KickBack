@@ -48,7 +48,7 @@ module tb_battery_motor_manager;
 
     always #(CLK_PERIOD/2) clk = ~clk;
 
-    // ---- SPI helper: send one 16-bit frame, MSB first, mode 0 ----
+    // SPI helper: send one 16-bit frame, MSB first, mode 0
     task spi_send16(input [15:0] frame);
         integer i;
         begin
@@ -162,7 +162,7 @@ module tb_battery_motor_manager;
             $display("PASS: fault correctly disables motor driver and PWM output");
         end
 
-        // ---- Clear the condition and the latched fault ----
+        // Clear the condition and the latched fault
         motor_current_adc = 12'd500;
         spi_send16({1'b1, 7'h05, 8'h01}); // FAULT_CLEAR register
         repeat (5) @(posedge clk);
