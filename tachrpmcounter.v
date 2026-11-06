@@ -24,7 +24,7 @@ module tach_rpm_counter #(
     localparam integer WINDOW_CYCLES =
         (CLK_FREQ_HZ / 1000) * SAMPLE_WINDOW_MS;
 
-    // ---- synchronize the async tach input ----
+    // synchronize the async tach input 
     reg tach_sync0, tach_sync1, tach_prev;
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -40,7 +40,7 @@ module tach_rpm_counter #(
 
     wire tach_rising = tach_sync1 & ~tach_prev;
 
-    // ---- window timer + pulse accumulator ----
+    // window timer + pulse accumulator 
     reg [31:0] window_counter;
     reg [15:0] pulse_count;
 
