@@ -1,8 +1,9 @@
-// ============================================================================
 // spi_slave_regs.v
 // Simple SPI slave exposing a small register file so the onboard
 // microcontroller can command a target RPM and read back status/faults.
 //
+
+// Standard SPI slave interface for MCU register access
 // Protocol (mode 0, MSB first), 16-bit transfers:
 //   MCU sends:  [R/W][7-bit addr][8 don't-care bits]  -- write also shifts in
 //               a second 16-bit word containing the write data.
@@ -67,6 +68,7 @@ module spi_slave_regs (
     reg [4:0]  bit_count;
     reg [7:0]  read_data;
 
+    //Combinational shift calculation
     always @(*) begin
         shift_in_next = {shift_in[14:0], mosi_sync};
     end
